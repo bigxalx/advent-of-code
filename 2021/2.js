@@ -1074,3 +1074,26 @@ console.log(
 
 const t3 = performance.now();
 console.log(`With Reduce took ${t3 - t2} milliseconds.`);
+
+// With for loop
+function withForLoop() {
+  let horizontalPosition = 0;
+  let depth = 0;
+  let aim = 0;
+  for ({ direction, distance } of input) {
+    if (direction === "up") {
+      aim -= distance;
+    } else if (direction === "down") {
+      aim += distance;
+    } else if (direction === "forward") {
+      horizontalPosition += distance;
+      depth += distance * aim;
+    }
+  }
+  return { horizontalPosition, depth, mulitiply: horizontalPosition * depth };
+}
+const t4 = performance.now();
+console.log("For Loop: ", withForLoop())
+const t5 = performance.now();
+
+console.log(`For Loop took ${t5 - t4} milliseconds.`);
