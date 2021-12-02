@@ -1004,7 +1004,7 @@ const input = inputString.split("\n").map((line) => {
   return { direction, distance: parseInt(distance) };
 });
 
-console.log(input);
+// console.log(input);
 
 function part1() {
   let horizontalPosition = 0;
@@ -1022,7 +1022,7 @@ function part1() {
   return { horizontalPosition, depth, mulitiply: horizontalPosition * depth };
 }
 
-console.log("Part 1: ", part1());
+// console.log("Part 1: ", part1());
 
 function part2() {
   let horizontalPosition = 0;
@@ -1041,5 +1041,36 @@ function part2() {
   });
   return { horizontalPosition, depth, mulitiply: horizontalPosition * depth };
 }
-
+const t0 = performance.now();
 console.log("Part 2: ", part2());
+const t1 = performance.now();
+console.log(`Part 2 took ${t1 - t0} milliseconds.`);
+
+// with reduce
+const t2 = performance.now();
+
+console.log(
+  "Part 2 with Reduce: ",
+  input.reduce(
+    ({ horizontalPosition, depth, aim }, { direction, distance }) => {
+      if (direction === "up") {
+        aim -= distance;
+      } else if (direction === "down") {
+        aim += distance;
+      } else if (direction === "forward") {
+        horizontalPosition += distance;
+        depth += distance * aim;
+      }
+      return {
+        horizontalPosition,
+        depth,
+        aim,
+        mulitiply: horizontalPosition * depth,
+      };
+    },
+    { horizontalPosition: 0, depth: 0, aim: 0 }
+  )
+);
+
+const t3 = performance.now();
+console.log(`With Reduce took ${t3 - t2} milliseconds.`);
