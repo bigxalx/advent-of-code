@@ -617,35 +617,18 @@ function part1() {
       } else {
         grid[point.x][point.y] = gridPoint + 1;
       }
-      // console.log("gridPoint afterwards: ", newGrid[point.x][point.y]);
-      // console.log("grid afterwards: ", grid);
     });
-
-    // console.log("affectedPoints: ", affectedPoints);
-    // console.log("grid: ", grid);
   });
-  let max = { value: 0, cell: null, line: null };
   let numberOfOverlappingPoints = 0;
   grid.map((row) =>
     row.map((cell) => {
       if (cell > 1) {
         numberOfOverlappingPoints++;
       }
-      if (cell > max.value) {
-        max = {
-          value: cell,
-          cell: { x: grid.indexOf(row), y: row.indexOf(cell) },
-          // line: line,
-          // index: index,
-          // affectedPoints: affectedPoints,
-        };
-      }
     })
   );
   console.log("number of overlapping points: ", numberOfOverlappingPoints);
-
-  console.log("grid: ", grid);
-  //   console.log("grid: ", grid);
+  return numberOfOverlappingPoints;
 }
 
 part1();
