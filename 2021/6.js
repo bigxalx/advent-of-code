@@ -33,7 +33,7 @@ function numberOfFishAfterDays(days) {
 console.log("Part 1: ", numberOfFishAfterDays(80));
 
 const generations = Array.from(
-  { length: 9 },
+  Array(9),
   (v, i) => input.filter((n) => n === i).length
 );
 
